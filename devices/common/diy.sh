@@ -20,6 +20,7 @@ echo "$(date +"%s")" >version.date
 sed -i '/$(curdir)\/compile:/c\$(curdir)/compile: package/opkg/host/compile' package/Makefile
 sed -i "s/DEFAULT_PACKAGES:=/DEFAULT_PACKAGES:=luci-app-advancedplus luci-app-firewall luci-app-opkg luci-app-upnp luci-app-syscontrol \
 luci-app-wizard luci-base luci-compat luci-lib-ipkg luci-lib-fs \
+luci-app-argon-config luci-app-openclash \
 coremark wget-ssl curl autocore htop nano zram-swap kmod-lib-zstd kmod-tcp-bbr bash openssh-sftp-server block-mount resolveip ds-lite swconfig luci-app-fan luci-app-fileassistant /" include/target.mk
 
 sed -i "s/procd-ujail//" include/target.mk
@@ -41,7 +42,7 @@ mv -f feeds/miaogongzi/r81* tmp/
 
 wget -N https://raw.githubusercontent.com/openwrt/packages/master/lang/golang/golang/Makefile -P feeds/packages/lang/golang/golang/
 
-sed -i "s/192.168.1/10.0.0/" package/base-files/files/bin/config_generate
+sed -i "s/192.168.1/192.168.3/" package/base-files/files/bin/config_generate
 
 #sed -i "/call Build\/check-size,\$\$(KERNEL_SIZE)/d" include/image.mk
 
@@ -85,4 +86,4 @@ sed -i \
 	-e 's?../../lang?$(TOPDIR)/feeds/packages/lang?' \
 	package/feeds/miaogongzi/*/Makefile
 
-sed -i "s/OpenWrt/Kwrt/g" package/base-files/files/bin/config_generate package/base-files/image-config.in config/Config-images.in Config.in include/u-boot.mk include/version.mk package/network/config/wifi-scripts/files/lib/wifi/mac80211.sh package/kernel/mac80211/files/lib/netifd/wireless/mac80211.sh || true
+sed -i "s/OpenWrt/MeowWrt/g" package/base-files/files/bin/config_generate package/base-files/image-config.in config/Config-images.in Config.in include/u-boot.mk include/version.mk package/network/config/wifi-scripts/files/lib/wifi/mac80211.sh package/kernel/mac80211/files/lib/netifd/wireless/mac80211.sh || true
