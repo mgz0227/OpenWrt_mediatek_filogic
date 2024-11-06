@@ -301,7 +301,7 @@ jobs:
         REMOTE_HOST: ${{ secrets.SERVER_HOST }}
         REMOTE_PORT: ${{ secrets.SERVER_PORT }}
         REMOTE_USER: root
-        TARGET: "/www/wwwroot/dl.openwrt.ai/releases/tmp/"
+        TARGET: "/www/wwwroot/op.miaogongzi.cc/releases/tmp/"
 
     - name: Upload firmware for artifact
       uses: actions/upload-artifact@main
@@ -329,7 +329,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN_MGZ0227 }}
       with:
-        files: "${{ env.FIRMWARE }}/*"
+        files: "openwrt/bin/targets/*"
         name: ${{ env.date2 }} ${{matrix.target}} ${{ env.EMOJI }}
         tag_name: ${{ env.date }}_${{matrix.target}}
         body_path: release.txt
