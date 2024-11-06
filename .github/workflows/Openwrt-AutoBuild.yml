@@ -277,7 +277,7 @@ jobs:
       run: |
         shopt -s extglob
         mkdir -p firmware/${{matrix.target}}
-        cp -rf openwrt/bin/targets/*/*/*{combined,sysupgrade}* ./firmware/${{matrix.target}}/ || true
+        cp -rf openwrt/bin/targets/*/*/*{combined,sysupgrade，bin}* ./firmware/${{matrix.target}}/ || true
         cd openwrt/bin/targets/*/*/
         cp $GITHUB_WORKSPACE/openwrt/.config ${{matrix.target}}.config || true
         cp $GITHUB_WORKSPACE/openwrt/build_dir/target-*/linux-*/linux-*/.config ${{matrix.target}}_kernel.config || true
@@ -329,7 +329,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN_MGZ0227 }}
       with:
-        files: "openwrt/bin/targets/*"
+        files: "firmware/${{matrix.target}}/*"
         name: ${{ env.date2 }} ${{matrix.target}} ${{ env.EMOJI }}
         tag_name: ${{ env.date }}_${{matrix.target}}
         body_path: release.txt
